@@ -7,7 +7,7 @@ app.use(cors());
 
 const server = http.createServer(app);
 
-let activeUsers = []
+let activeUsers = {}
 
 const io = new Server(server, {
     cors: {
@@ -37,12 +37,18 @@ io.on("connection", (socket) => {
 
         data.socketId = socket.id;
 
-        activeUsers.push(data);
-        activeUsers = removeDuplicates(activeUsers);
-        
-        io.to(data.room).emit("first-connected", activeUsers);
+        if (activeUsers[data.room] === undefined) {
+            activeUsers[data.room] = []
+        }
+        activeUsers[data.room].push(data);
 
-        socket.to(data.room).emit("user-joined", activeUsers);
+        activeUsers[data.room] = removeDuplicates(activeUsers[data.room]);
+
+        console.log(activeUsers, "ASTA II ARRAYU", activeUsers[data.room]);
+
+        io.to(data.room).emit("first-connected", activeUsers[data.room]);
+
+        socket.to(data.room).emit("user-joined", activeUsers[data.room]);
 
         console.log(`User ${socket.id} joined room: ${data.room}`);
     })
@@ -54,12 +60,25 @@ io.on("connection", (socket) => {
 
     socket.on("disconnect", () => {
         console.log("User disconnected", socket.id);
-        removedUser = activeUsers.find((activeUser) => String(activeUser.socketId) === String(socket.id));
-        if (removedUser !== undefined) {
-            activeUsers = activeUsers.filter((activeUser) => activeUser.socketId !== socket.id);
-            socket.to(removedUser.room).emit("user-left", activeUsers);
+        rooms = Array.from(Object.keys(activeUsers));
+    
+        let removedUser = undefined;
+        let i, j;
+        for (i = 0; i < rooms.length; i++) {
+                if(activeUsers[rooms] !== undefined) {
+                for (j = 0; j < activeUsers[rooms].length; j++) {
+                    if (activeUsers[rooms][j].socketId === socket.id) {
+                        removedUser = activeUsers[rooms][j];
+                        break;
+                    }
+                }
+            }
         }
-        console.log(activeUsers);
+        if (removedUser !== undefined) {
+            activeUsers[removedUser.room] = activeUsers[removedUser.room].filter((activeUser) => activeUser.socketId !== socket.id);
+            socket.to(removedUser.room).emit("user-left", activeUsers[removedUser.room]);
+            console.log(activeUsers[removedUser.room]);
+        }
     });
 });
 
