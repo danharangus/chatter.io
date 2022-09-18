@@ -14,7 +14,8 @@ export default function JoinRoomPage() {
     const [room, setRoom] = useState("");
     const navigate = useNavigate();
 
-    const joinRoom = () => {
+    const joinRoom = (e) => {
+        e.preventDefault();
         if (username !== "" && room !== "") {
             const joinData = {
                 username: username,
@@ -58,7 +59,7 @@ export default function JoinRoomPage() {
                 <input type="text" className="room-data-form__room-id-input" id="id-input"
                     placeholder="Room Id..." autoComplete="off"
                 />
-                <button type="submit" className="room-data-form__submit-button">
+                <button type="button" value="submit" className="room-data-form__submit-button">
                     Join Room
                 </button>
             </form>
