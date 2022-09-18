@@ -13,13 +13,13 @@
     }
 
     &__messages-container {
-        height: 90%;
+        height: 87%;
         overflow-y: scroll;
-        padding-top: 0.8rem;
+        padding-top: 1.8rem;
     }
 
     &__message-form {
-        height: 5%;
+        height: 8%;
         display: flex;
         gap: 0.5rem;
         flex-direction: row;
@@ -33,11 +33,21 @@
         font-family: "VarelaRound-Regular";
         border-radius: 0.5rem;
         margin-left: 1.5%;
+        font-size: 1.5vmax;
         border: 2px solid $primary-color;
     }
 
+    @media screen and (max-width:500px) {
+        &__input {
+            font-size: 4vmax;
+        }
+    }
+
     &__input:focus {
-        outline: 1px solid $primary-color;
+        outline: none;
+        -webkit-box-shadow: 1px 1px 1px $primary-color;
+        -moz-box-shadow: 1px 1px 1px $primary-color;
+        box-shadow: 1px 1px 1px $primary-color;
     }
 
     &__send-button {
@@ -47,7 +57,7 @@
         border: none;
         background-color: $primary-color;
         border-radius: 0.5rem;
-        font-size: 3vmin;
+        font-size: 2vmax;
         align-items: center;
         justify-content: center;
         cursor: pointer;
@@ -57,7 +67,7 @@
 .room-controls {
     &__info-button {
         color: $primary-color;
-        font-size: 2.5vmax;
+        font-size: 4vmax;
         border: none;
         background-color: transparent;
         margin-right: auto;
@@ -71,7 +81,7 @@
 
     &__change-room-button {
         color: $primary-color;
-        font-size: 2.5vmax;
+        font-size: 4vmax;
         border: none;
         background-color: transparent;
         margin-left: auto;

@@ -29,6 +29,8 @@
 .room-data-form {
     &__nickname-input, &__room-id-input, &__submit-button {
         padding: 0.7rem;
+        -webkit-box-shadow: 0.1rem 0.1rem 0.3rem black;
+        -moz-box-shadow: 0.1rem 0.1rem 0.3rem black;
         box-shadow: 0.1rem 0.1rem 0.3rem black;
         font-family: "VarelaRound-Regular";
         font-size: 2rem;
@@ -36,7 +38,10 @@
     }
 
     &__nickname-input:focus, &__room-id-input:focus {
-        outline: 1px solid black;
+        outline: none;
+        -webkit-box-shadow: 0.2rem 0.2rem 0.4rem black;
+        -moz-box-shadow: 0.2rem 0.2rem 0.4rem black;
+        box-shadow: 0.2rem 0.2rem 0.4rem black;
     }
 
     &__submit-button {

@@ -36,6 +36,11 @@ export default function ChatPage(props) {
         element.scrollTop = element.scrollHeight;
     }
 
+    const autoScrollToBottomWhole = () => {
+        const wholePage = document.querySelector(".chat-page-container");
+        wholePage.scrollTop = wholePage.scrollHeight;
+    }
+
     const sendMessage = async (e) => {
         e.preventDefault();
         if (message !== "") {
@@ -54,6 +59,7 @@ export default function ChatPage(props) {
 
     useEffect(() => {
         autoScrollToBottom();
+        autoScrollToBottomWhole();
     })
 
     useEffect(() => {
@@ -137,7 +143,7 @@ export default function ChatPage(props) {
             </div>
             <form className="chat-page-container__message-form" onSubmit={sendMessage}>
                 <input type="textarea" className="message-form__input" id="msg-input" 
-                    placeholder="Send a message..." onChange={changeInput} value={message}autoComplete="false"/>
+                    placeholder="Send a message..." onChange={changeInput} value={message} autoComplete="off"/>
                 <button type="button" value="Submit" className="message-form__send-button" onClick={sendMessage}>
                     <AiOutlineSend/>
                 </button>

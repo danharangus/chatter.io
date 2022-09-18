@@ -14,9 +14,9 @@ export default function ToggleMenuButton() {
         if (menuStatus === 'closed') {
             let widthPercentage;
 
-            if (window.innerWidth < 800) {
+            if (window.innerWidth < 1000) {
                 widthPercentage = "50%";
-            } else if (window.innerWidth >= 800) {
+            } else if (window.innerWidth >= 1000) {
                 widthPercentage = "25%";
             }
 

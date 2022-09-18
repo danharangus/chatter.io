@@ -12,6 +12,7 @@
     background-color: $secondary-color;
     height: 100vh;
     transition: width 0.5s $main-cubic-bezier, opacity 0.4s $main-cubic-bezier;
+    padding-top: 3rem;
 
     &__room-id {
         margin-top: 1rem;
