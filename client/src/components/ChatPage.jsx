@@ -59,7 +59,7 @@ export default function ChatPage(props) {
             </div>
             <form className="chat-page-container__message-form" onSubmit={sendMessage}>
                 <input type="textarea" className="message-form__input" id="msg-input" 
-                    placeholder="Send a message..." onChange={changeInput} autoComplete="false"/>
+                    placeholder="Send a message..." onChange={changeInput} value={message} autoComplete="false"/>
                 <button type="button" value="Submit" className="message-form__send-button" onClick={sendMessage}>
                     <AiOutlineSend/>
                 </button>
