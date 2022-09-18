@@ -8,6 +8,8 @@ export default function Menu(props) {
         <div className="menu-container">
             <Link to="/"
                   className={props.currentPage === 'home' ? 'menu-container__menu-button menu-button--active' : 'menu-container__menu-button'}>Home</Link>
+            <Link to="/join-room"
+                  className={props.currentPage === 'join-room' ? 'menu-container__menu-button menu-button--active' : 'menu-container__menu-button'}>Join room</Link>
             <Link to="/about"
                   className={props.currentPage === 'about' ? 'menu-container__menu-button menu-button--active' : 'menu-container__menu-button'}>About</Link>
         </div>

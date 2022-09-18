@@ -6,7 +6,6 @@ import "../fonts/VarelaRound-Regular.ttf";
 import Menu from "./Menu";
 import ToggleMenuButton from "./ToggleMenuButton";
 import dotPatternBg from "../lotties/dot-pattern-background.json";
-import io from "socket.io-client";
 import {useState} from "react";
 import {useNavigate} from "react-router-dom"
 
@@ -34,8 +33,9 @@ export default function JoinRoomPage() {
     }
 
     useEffect(() => {
+        console.log("hello");
         const backgroundAnim = lottie.loadAnimation({
-            container: document.querySelector('.home-page-container__animation-container'),
+            container: document.querySelector('.join-room-page-container__animation-container'),
             animationData: chooseBackground(),
             renderer: 'svg',
             loop: true,
@@ -48,24 +48,10 @@ export default function JoinRoomPage() {
     },[]);
 
     return (
-        <div className="home-page-container">
-            <Menu currentPage="Join Room"/>
-            {/*<div className="home-page-container__animation-container"></div>*/}
-            <input 
-                type="text" 
-                placeholder="Name..." 
-                onChange={(event) => {
-                    setUsername(event.target.value);
-                }}
-            />
-            <input 
-                type="text" 
-                placeholder="Room ID..."
-                onChange={(event) => {
-                    setRoom(event.target.value);
-                }}    
-            />
-            <button onClick={joinRoom}>Join room</button>
+        <div className="join-room-page-container">
+            <Menu currentPage="join-room"/>
+            <ToggleMenuButton/>
+            <div className="join-room-page-container__animation-container"></div>
         </div>
     );
 }
