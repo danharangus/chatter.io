@@ -104,15 +104,8 @@ export default function ChatPage(props) {
     const toggleMoreInfoButtonClick = () => {
         let infoTabElement = document.querySelector('.chat-info-container');
         if (infoTabStatus === 'closed') {
-            let widthPercentage;
 
-            if (window.innerWidth < 800) {
-                widthPercentage = "50%";
-            } else if (window.innerWidth >= 800) {
-                widthPercentage = "25%";
-            }
-
-            infoTabElement.style.setProperty('--infoContainerWidth', widthPercentage);
+            infoTabElement.style.setProperty('--infoContainerWidth', "100%");
             infoTabElement.style.setProperty('--infoContainerOpacity', '1');
             setInfoTabStatus('opened');
             
@@ -145,7 +138,7 @@ export default function ChatPage(props) {
                 <input type="textarea" className="message-form__input" id="msg-input" 
                     placeholder="Send a message..." onChange={changeInput} value={message} autoComplete="off"/>
                 <button type="button" value="Submit" className="message-form__send-button" onClick={sendMessage}>
-                    <AiOutlineSend/>
+                    Send
                 </button>
             </form>
         </div>

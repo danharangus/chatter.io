@@ -12,15 +12,8 @@ export default function ToggleMenuButton() {
     const toggleMenuButtonClick = () => {
         let menuContainerElement = document.querySelector('.menu-container');
         if (menuStatus === 'closed') {
-            let widthPercentage;
 
-            if (window.innerWidth < 1000) {
-                widthPercentage = "50%";
-            } else if (window.innerWidth >= 1000) {
-                widthPercentage = "25%";
-            }
-
-            menuContainerElement.style.setProperty('--menuWidth', widthPercentage);
+            menuContainerElement.style.setProperty('--menuWidth', "100%");
             menuContainerElement.style.setProperty('--menuOpacity', '1');
             setMenuStatus('opened');
             
