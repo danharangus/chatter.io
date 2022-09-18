@@ -4,11 +4,6 @@ import {AiFillCloseCircle} from "react-icons/ai";
 import { useState } from "react";
 
 export default function ChatRoomInfoTab(props) {
-
-    const cl = () => {
-        console.log('fasole');
-    }
-    
     return (
         <div className="chat-info-container">
             <div className="chat-info-container__room-id">{`Room:${props.currentRoom}`}</div>
