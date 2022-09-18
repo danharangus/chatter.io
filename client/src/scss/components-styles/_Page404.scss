@@ -1,0 +1,26 @@
+
+.page404-container {
+    width: 100%;
+    height: 100vh;
+    position: relative;
+
+    &__error-information-container {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%,-50%);
+        
+        h1 {
+            font-size: 20vmin;
+            color: $primary-color;
+            margin-bottom: 0;
+            text-align: center;
+        }
+
+        h2 {
+            font-size: 10vmin;
+            color: $primary-color;
+            text-align: center;
+        }
+    }
+}

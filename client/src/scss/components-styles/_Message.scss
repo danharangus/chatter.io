@@ -1,0 +1,46 @@
+.message-data {
+    display: flex;
+    max-width: 100%;
+    position: relative;
+    overflow-wrap: break-word;
+    word-break: break-word;
+    margin-left: 1rem;
+    margin-right: 20%;
+    justify-content: flex-start;
+
+    &__body {
+        background-color: $secondary-color;
+        overflow-wrap: break-word;
+        font-family: "VarelaRound-Regular";
+        word-break: break-word;
+        border-radius: 0.4rem;
+        padding: 0.8rem 1.3rem 0.8rem 1.3rem;
+    }
+
+    &__meta {
+        position: absolute;
+        display: flex;
+        top: -1.2rem;
+    }
+}
+
+.meta {
+    &__author {
+        font-family: "VarelaRound-Regular";
+        font-size: 0.9rem;
+    }
+
+    &__date {
+        font-family: "VarelaRound-Regular";
+        font-size: 0.9rem;
+    }
+}
+
+.message--you {
+    p.message-data__body {
+        background-color: $primary-color;
+    }
+    margin-right: 1rem;
+    margin-left: 20%;
+    justify-content: flex-end;
+}

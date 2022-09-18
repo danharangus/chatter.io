@@ -1,0 +1,19 @@
+.loader-page-container {
+    width: 100%;
+    height: 100vh;
+    position: relative;
+    background-color: $loader-container-main-bg-color;
+}
+
+.loader-page-container {
+    &__loader-container {
+        width: fit-content;
+        height: fit-content;
+        padding: 0;
+        margin: 0;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%,-50%);
+    }
+}

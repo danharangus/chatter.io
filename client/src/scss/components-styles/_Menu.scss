@@ -1,0 +1,30 @@
+.menu-container {
+    --menuWidth:0%;
+    --menuOpacity:0;
+    width: var(--menuWidth);
+    opacity: var(--menuOpacity);
+    height: 100vh;
+    background-color: $secondary-color;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index:3;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    transition: width 0.5s $main-cubic-bezier, opacity 0.7s $main-cubic-bezier;
+}
+
+.menu-container {
+    &__menu-button {
+        font-family: "VarelaRound-Regular";
+        font-size: 5vmin;
+        text-decoration: none;
+        color: $text-primary-color;
+    }
+    .menu-button--active {
+        color: $primary-color;
+    }
+}
