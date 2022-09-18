@@ -16,6 +16,7 @@ export default function JoinRoomPage() {
 
     const joinRoom = (e) => {
         e.preventDefault();
+        console.log(room, username);
         if (username !== "" && room !== "") {
             const joinData = {
                 username: username,
@@ -34,7 +35,6 @@ export default function JoinRoomPage() {
     }
 
     useEffect(() => {
-        console.log("hello");
         const backgroundAnim = lottie.loadAnimation({
             container: document.querySelector('.join-room-page-container__animation-container'),
             animationData: chooseBackground(),
@@ -53,13 +53,19 @@ export default function JoinRoomPage() {
             <Menu currentPage="join-room"/>
             <ToggleMenuButton/>
             <div className="join-room-page-container__animation-container"></div>
-            <form className="join-room-page-container__room-data-form">
+            <form className="join-room-page-container__room-data-form" onSubmit={joinRoom}>
                 <input type="text" className="room-data-form__nickname-input" id="nick-input" 
-                    placeholder="Nickname..." autoComplete="off"/>
+                    placeholder="Nickname..." autoComplete="off"
+                    onChange={(e) => {
+                        setUsername(e.target.value);
+                    }}/>
                 <input type="text" className="room-data-form__room-id-input" id="id-input"
                     placeholder="Room Id..." autoComplete="off"
+                    onChange={(e) => {
+                        setRoom(e.target.value);
+                    }}
                 />
-                <button type="button" value="submit" className="room-data-form__submit-button">
+                <button type="button" value="submit" className="room-data-form__submit-button" onClick={joinRoom}>
                     Join Room
                 </button>
             </form>
