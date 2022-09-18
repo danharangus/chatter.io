@@ -6,6 +6,11 @@ import { useParams } from "react-router-dom";
 import { useEffect } from "react";
 import {useLocation} from 'react-router-dom';   
 import io from "socket.io-client";
+import ChatRoomInfoTab from "./ChatRoomInfoTab";
+import {BsFillInfoSquareFill} from "react-icons/bs";
+import {CgDetailsMore} from "react-icons/cg";
+import {GiCardExchange} from "react-icons/gi";
+import { useNavigate } from "react-router-dom";
 
 export default function ChatPage(props) {
 
@@ -13,9 +18,15 @@ export default function ChatPage(props) {
     const [messageList, setMessageList] = useState([]);
     const [socketId, setSocketId] = useState("");
     const [activeUsers, setActiveUsers] = useState([]);
+    const [infoTabStatus,setInfoTabStatus] = useState('closed');
     const { user, room } = useParams();
 
     const socket = props.socket;
+
+    const autoScrollToBottom = () => {
+        const element = document.querySelector(".chat-page-container__messages-container");
+        element.scrollTop = element.scrollHeight;
+    }
 
     const sendMessage = async (e) => {
         e.preventDefault();
@@ -34,6 +45,10 @@ export default function ChatPage(props) {
     }
 
     useEffect(() => {
+        autoScrollToBottom();
+    })
+
+    useEffect(() => {
         const data = {
             user: user,
             room: room
@@ -46,6 +61,7 @@ export default function ChatPage(props) {
     useEffect(() => {
         socket.off("receive-message").on("receive-message", (data) => {
           setMessageList((messageList) => [...messageList, data]);
+          autoScrollToBottom();
         });
       }, []);
 
@@ -71,14 +87,40 @@ export default function ChatPage(props) {
         setCurrentMessage(e.target.value);
     }
 
+    const toggleMoreInfoButtonClick = () => {
+        let infoTabElement = document.querySelector('.chat-info-container');
+        if (infoTabStatus === 'closed') {
+            let widthPercentage;
+
+            if (window.innerWidth < 800) {
+                widthPercentage = "50%";
+            } else if (window.innerWidth >= 800) {
+                widthPercentage = "25%";
+            }
+
+            infoTabElement.style.setProperty('--infoContainerWidth', widthPercentage);
+            infoTabElement.style.setProperty('--infoContainerOpacity', '1');
+            setInfoTabStatus('opened');
+            
+        } else {
+            infoTabElement.style.setProperty('--infoContainerWidth', "0%");
+            infoTabElement.style.setProperty('--infoContainerOpacity', "0");
+            setInfoTabStatus('closed');
+        }
+    }
+
     return (
         <div className="chat-page-container">
+            <ChatRoomInfoTab currentUsers={activeUsers} currentRoom={room}/>
             <div className="chat-page-container__room-controls">
-                {activeUsers.map((activeUser) => {
-                    return (
-                        <div>{activeUser.user}</div>
-                    );
-                })}
+                <button className="room-controls__info-button" onClick={toggleMoreInfoButtonClick}>
+                    <CgDetailsMore/>
+                </button>
+                <a href="http://localhost:3000/join-room">
+                    <button className="room-controls__change-room-button">
+                        <GiCardExchange/>
+                    </button>
+                </a>
             </div>
             <div className="chat-page-container__messages-container">
                 {messageList.map((messageContent) => {

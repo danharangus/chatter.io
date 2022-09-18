@@ -8,12 +8,14 @@
 
     &__room-controls {
         height: 5%;
+        display: flex;
+        z-index: 4;
     }
 
     &__messages-container {
         height: 90%;
         overflow-y: scroll;
-        padding-top: 0.1rem;
+        padding-top: 0.8rem;
     }
 
     &__message-form {
@@ -48,6 +50,31 @@
         font-size: 3vmin;
         align-items: center;
         justify-content: center;
+        cursor: pointer;
+    }
+}
+
+.room-controls {
+    &__info-button {
+        color: $primary-color;
+        font-size: 2.5vmax;
+        border: none;
+        background-color: transparent;
+        margin-right: auto;
+        cursor: pointer;
+        transition: transform 0.2s;
+    }
+
+    &__info-button:active {
+        transform: scale(0.7);
+    }
+
+    &__change-room-button {
+        color: $primary-color;
+        font-size: 2.5vmax;
+        border: none;
+        background-color: transparent;
+        margin-left: auto;
         cursor: pointer;
     }
 }

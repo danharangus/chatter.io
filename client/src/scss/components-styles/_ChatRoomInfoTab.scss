@@ -1,0 +1,46 @@
+.chat-info-container {
+    --infoContainerWidth: 0%;
+    --infoContainerOpacity: 0;
+    display: flex;
+    position: absolute;
+    flex-direction: column;
+    align-items: center;
+    z-index: 3;
+    justify-content: flex-start;
+    width: var(--infoContainerWidth);
+    opacity: var(--infoContainerOpacity);
+    background-color: $secondary-color;
+    height: 100vh;
+    transition: width 0.5s $main-cubic-bezier, opacity 0.4s $main-cubic-bezier;
+
+    &__room-id {
+        margin-top: 1rem;
+        font-family: "VarelaRound-Regular";
+        font-size: 2vmax;
+        white-space:pre-wrap;
+        word-break:break-word;
+    }
+
+    &__list-title {
+        color: $primary-color;
+        font-family: "VarelaRound-Regular";
+        white-space:pre-wrap;
+        word-break:break-word;
+        font-size: 2vmax;
+    }
+
+    &__users-container {
+        color: $primary-color;
+        text-align: center;
+        overflow-y: scroll;
+        white-space:pre-wrap;
+        word-break:break-word;
+        width: 100%;
+    }
+}
+
+.currentUser {
+    color: $primary-color;
+    font-family: "VarelaRound-Regular";
+    font-size: 2vmax;
+}
