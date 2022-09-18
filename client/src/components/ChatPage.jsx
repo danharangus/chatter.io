@@ -23,6 +23,14 @@ export default function ChatPage(props) {
 
     const socket = props.socket;
 
+    const changeRoomButtonClick = () => {
+        if(window.location.protocol === 'http:'){
+            window.location = `http://${window.location.host}/join-room`;
+        }else if(window.location.protocol === 'https:'){
+            window.location = `https://${window.location.host}/join-room`;
+        }
+    }
+
     const autoScrollToBottom = () => {
         const element = document.querySelector(".chat-page-container__messages-container");
         element.scrollTop = element.scrollHeight;
@@ -116,11 +124,9 @@ export default function ChatPage(props) {
                 <button className="room-controls__info-button" onClick={toggleMoreInfoButtonClick}>
                     <CgDetailsMore/>
                 </button>
-                <a href="http://localhost:3000/join-room">
-                    <button className="room-controls__change-room-button">
-                        <GiCardExchange/>
-                    </button>
-                </a>
+                <button className="room-controls__change-room-button" onClick={changeRoomButtonClick}>
+                    <GiCardExchange/>
+                </button>
             </div>
             <div className="chat-page-container__messages-container">
                 {messageList.map((messageContent) => {
