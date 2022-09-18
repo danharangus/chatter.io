@@ -8,9 +8,9 @@ import {useLocation} from 'react-router-dom';
 import io from "socket.io-client";
 
 export default function ChatPage(props) {
-    
+
     const [message, setCurrentMessage] = useState("");
-    const [messageList, setMessageList] = useState([])
+    const [messageList, setMessageList] = useState([]);
     const { user, room } = useParams();
 
     const socket = props.socket;
