@@ -14,7 +14,8 @@ export default function ChatPage(props) {
 
     const socket = props.socket;
 
-    const sendMessage = async () => {
+    const sendMessage = async (e) => {
+        e.preventDefault();
         if (message !== "") {
             const messageInfo = {
                 author: user,
@@ -56,10 +57,10 @@ export default function ChatPage(props) {
             );
           })}
             </div>
-            <form className="chat-page-container__message-form">
+            <form className="chat-page-container__message-form" onSubmit={sendMessage}>
                 <input type="textarea" className="message-form__input" id="msg-input" 
-                    placeholder="Send a message..." onChange={changeInput}/>
-                <button type="submit" form="msg-input" value="Submit" className="message-form__send-button" onClick={sendMessage}>
+                    placeholder="Send a message..." onChange={changeInput} autoComplete="false"/>
+                <button type="button" value="Submit" className="message-form__send-button" onClick={sendMessage}>
                     <AiOutlineSend/>
                 </button>
             </form>

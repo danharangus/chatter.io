@@ -2,17 +2,17 @@
     display: flex;
     max-width: 100%;
     position: relative;
-    overflow-wrap: break-word;
-    word-break: break-word;
+    white-space:pre-wrap;
+    word-break:break-word;
     margin-left: 1rem;
     margin-right: 20%;
     justify-content: flex-start;
 
     &__body {
         background-color: $secondary-color;
-        overflow-wrap: break-word;
+        white-space:pre-wrap;
+        word-break:break-word;
         font-family: "VarelaRound-Regular";
-        word-break: break-word;
         border-radius: 0.4rem;
         padding: 0.8rem 1.3rem 0.8rem 1.3rem;
     }

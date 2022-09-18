@@ -12,6 +12,8 @@
 
     &__messages-container {
         height: 90%;
+        overflow-y: scroll;
+        padding-top: 0.1rem;
     }
 
     &__message-form {
