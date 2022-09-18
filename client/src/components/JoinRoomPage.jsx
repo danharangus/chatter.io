@@ -7,7 +7,7 @@ import Menu from "./Menu";
 import ToggleMenuButton from "./ToggleMenuButton";
 import dotPatternBg from "../lotties/dot-pattern-background.json";
 import {useState} from "react";
-import {useNavigate} from "react-router-dom"
+import {useNavigate} from "react-router-dom";
 
 export default function JoinRoomPage() {
     const [username, setUsername] = useState("");
@@ -52,6 +52,16 @@ export default function JoinRoomPage() {
             <Menu currentPage="join-room"/>
             <ToggleMenuButton/>
             <div className="join-room-page-container__animation-container"></div>
+            <form className="join-room-page-container__room-data-form">
+                <input type="text" className="room-data-form__nickname-input" id="nick-input" 
+                    placeholder="Nickname..."/>
+                <input type="text" className="room-data-form__room-id-input" id="id-input"
+                    placeholder="Room Id..."
+                />
+                <button type="submit" className="room-data-form__submit-button">
+                    Join Room
+                </button>
+            </form>
         </div>
     );
 }

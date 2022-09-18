@@ -12,4 +12,37 @@
         position: absolute;
         z-index: 1;
     }
+
+    &__room-data-form {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%,-50%);
+        display: flex;
+        flex-direction: column;
+        width: 70%;
+        z-index: 2;
+        gap: 0.8rem;
+    }
+}
+
+.room-data-form {
+    &__nickname-input, &__room-id-input, &__submit-button {
+        padding: 0.7rem;
+        box-shadow: 0.1rem 0.1rem 0.3rem black;
+        font-family: "VarelaRound-Regular";
+        font-size: 2rem;
+        border-radius: 0.5rem;
+    }
+
+    &__nickname-input:focus, &__room-id-input:focus {
+        outline: 1px solid black;
+    }
+
+    &__submit-button {
+        border: none;
+        background-color: black;
+        cursor: pointer;
+        color: white;
+    }
 }
