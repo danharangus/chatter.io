@@ -10,7 +10,7 @@ import ChatRoomInfoTab from "./ChatRoomInfoTab";
 import {BsFillInfoSquareFill} from "react-icons/bs";
 import {CgDetailsMore} from "react-icons/cg";
 import {GiCardExchange} from "react-icons/gi";
-import { useNavigate } from "react-router-dom";
+import ifvisible from "ifvisible.js";
 
 export default function ChatPage(props) {
 
@@ -20,14 +20,13 @@ export default function ChatPage(props) {
     const [activeUsers, setActiveUsers] = useState([]);
     const [infoTabStatus,setInfoTabStatus] = useState('closed');
     const { user, room } = useParams();
-
     const socket = props.socket;
 
     const changeRoomButtonClick = () => {
         if(window.location.protocol === 'http:'){
-            window.location = `http://${window.location.host}/join-room`;
+            window.location = `http://${window.location.host}/#/join-room`;
         }else if(window.location.protocol === 'https:'){
-            window.location = `https://${window.location.host}/join-room`;
+            window.location = `https://${window.location.host}/#/join-room`;
         }
     }
 
@@ -56,6 +55,12 @@ export default function ChatPage(props) {
             setCurrentMessage("");
         }
     }
+
+    useEffect(() => {
+        if(!ifvisible.now()) {
+            socket.emit("disconnect");
+        }
+    })
 
     useEffect(() => {
         autoScrollToBottom();

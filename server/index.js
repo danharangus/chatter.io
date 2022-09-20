@@ -11,7 +11,7 @@ let activeUsers = {}
 
 const io = new Server(server, {
     cors: {
-        origin: "http://localhost:3000",
+        origins: ["http://localhost:3000"],
         methods: ["GET", "POST"],
     },
 });
@@ -44,8 +44,6 @@ io.on("connection", (socket) => {
 
         activeUsers[data.room] = removeDuplicates(activeUsers[data.room]);
 
-        console.log(activeUsers, "ASTA II ARRAYU", activeUsers[data.room]);
-
         io.to(data.room).emit("first-connected", activeUsers[data.room]);
 
         socket.to(data.room).emit("user-joined", activeUsers[data.room]);
@@ -54,7 +52,6 @@ io.on("connection", (socket) => {
     })
 
     socket.on("send-message", (data) => {
-        console.log(data);
         socket.to(data.room).emit("receive-message", data);
       });
 
@@ -77,12 +74,11 @@ io.on("connection", (socket) => {
         if (removedUser !== undefined) {
             activeUsers[removedUser.room] = activeUsers[removedUser.room].filter((activeUser) => activeUser.socketId !== socket.id);
             socket.to(removedUser.room).emit("user-left", activeUsers[removedUser.room]);
-            console.log(activeUsers[removedUser.room]);
         }
     });
 });
 
 
-server.listen(3001, () => {
+server.listen(process.env.PORT || 5000, () => {
     console.log("Server online");
 });
